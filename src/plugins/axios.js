@@ -10,9 +10,9 @@ Vue.use({
         //Vue.prototype.$http = axios
         Vue.prototype.$http = axios.create({
             baseURL: 'https://ptapp-1817e-default-rtdb.firebaseio.com/',
-            headers:{
+           /* headers:{
                     "Authorization": "teste"
-            }
+            }*/
         })
 
         Vue.prototype.$http.interceptors.request.use(config=>{

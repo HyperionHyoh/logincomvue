@@ -16,6 +16,14 @@
         </v-btn>
       </template>
       <v-card>
+        <v-alert
+          dismissible
+          dense
+          text
+          type="success"
+        >
+          I'm a dense alert with the <strong>text</strong> prop and a <strong>type</strong> of success
+        </v-alert>
         <v-card-title>
           <span class="text-h5">Formulário de cadastro</span>
         </v-card-title>
@@ -29,7 +37,8 @@
               >
                 <v-text-field
                   label="Nome*"
-                  required
+                  
+                  v-model="usuario.nome"
                 ></v-text-field>
               </v-col>
               <v-col
@@ -39,8 +48,9 @@
               >
                 <v-text-field
                   label="CPF*"
+                  v-model="usuario.cpf"
                   hint="Digite seu cpf"
-                  required
+                  
                 ></v-text-field>
               </v-col>
               <v-col
@@ -50,23 +60,27 @@
               >
                 <v-text-field
                   label="PIS*"
+                  v-model="usuario.pis"
                   hint="Número PIS de sua carteira de trabalho"
                   persistent-hint
-                  required
+                  
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
                   label="Email*"
-                  required
+                  v-model="usuario.email"
+                  
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
+                  
                   label="Senha*"
                   type="Senha"
-                  hint="Número PIS de sua carteira de trabalho"
-                  required
+                  v-model="usuario.senha"
+                  hint="Esta será sua senha de acesso"
+                  
                 ></v-text-field>
               </v-col>
               <v-col
@@ -76,7 +90,7 @@
                 <v-select
                   :items="['Brasil', 'Argentina', 'Paraguai', 'China']"
                   label="Pais*"
-                  required
+                  v-model="usuario.pais"
                 ></v-select>
               </v-col>
               <v-col
@@ -86,7 +100,8 @@
                 <v-select
                   :items="['Maranhão', 'Ceará', 'São Paulo', 'Bahia','Um estado estrangeiro', 'Outro estado estrangeiro']"
                   label="Estado*"
-                  required
+                  v-model="usuario.estado"
+                  
                 ></v-select>
               </v-col>
 
@@ -97,7 +112,8 @@
               >
                 <v-text-field
                   label="Cep*"
-                  required
+                  v-model="usuario.cep"
+                  
                 ></v-text-field>
               </v-col>
 
@@ -108,7 +124,8 @@
               >
                 <v-text-field
                   label="Rua*"
-                  required
+                  v-model="usuario.rua"
+                  
                 ></v-text-field>
               </v-col>
 
@@ -119,7 +136,7 @@
               >
                 <v-text-field
                   label="Nº"
-                  
+                  v-model="usuario.numero"
                 ></v-text-field>
               </v-col>
 
@@ -130,6 +147,7 @@
               >
                 <v-text-field
                   label="Complemento"
+                  v-model="usuario.complemento"
                   
                 ></v-text-field>
               </v-col>
@@ -150,7 +168,7 @@
           <v-btn
             color="purple darken-2"
             text
-            @click="dialog = false"
+            @click="salvar"
           >
             Salvar
           </v-btn>
@@ -165,6 +183,37 @@
     name:'Cadastro',
     data: () => ({
       dialog: false,
+      mensagens: [],
+			usuarios:[],
+			id: null,
+			usuario:{
+				nome: '',
+				email: ''
+			}
     }),
+    methods:{
+    limpar(){
+			this.usuario.nome = ''
+			this.usuario.email = ''
+			this.id = null
+			this.mensagens = []
+		},
+
+      salvar(){
+			const metodo = this.id ? 'patch' : 'post'
+			const finalUrl = this.id ? `/${this.id}.json` : '.json'
+			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
+				.then(() => {
+					this.limpar()
+					this.mensagens.push({
+						texto:'Cadastro realizado com sucesso',
+						tipo:'success'
+					})
+					
+				})
+			/*this.$http.post('usuarios.json', this.usuario)
+				.then(() => this.limpar())*/
+		},
+    }
   }
 </script>

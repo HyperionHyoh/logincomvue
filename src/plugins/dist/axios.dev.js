@@ -13,10 +13,11 @@ _vue["default"].use({
   install: function install(Vue) {
     //Vue.prototype.$http = axios
     Vue.prototype.$http = _axios["default"].create({
-      baseURL: 'https://ptapp-1817e-default-rtdb.firebaseio.com/',
-      headers: {
-        "Authorization": "teste"
-      }
+      baseURL: 'https://ptapp-1817e-default-rtdb.firebaseio.com/'
+      /* headers:{
+               "Authorization": "teste"
+       }*/
+
     });
     Vue.prototype.$http.interceptors.request.use(function (config) {
       console.log(config.method);
