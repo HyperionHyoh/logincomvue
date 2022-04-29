@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+
 //axios.defaults.baseURL = 'https://ptapp-1817e-default-rtdb.firebaseio.com/'
 //axios.defaults.headers.common['Authorization']= 'abc123'
 //axios.defaults.headers.get['Accepts']= 'application/json'

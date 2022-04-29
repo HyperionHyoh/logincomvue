@@ -14,7 +14,7 @@
 					</v-card-title>
 
 					<v-card-text>
-                        <div class=" text-center" >
+                        <div class=" text-center">
                             Olá Visitante<br>
                            
                         </div>
@@ -38,8 +38,9 @@
 							</v-row>
 							<v-row dense>
 								<v-col col='12' sm='8' offset-sm='2' class="text-center mb-4">
-									<v-btn class="purple--text" type="submit" elevation='0'>Entrar</v-btn>
+									<v-btn class="purple--text" type="submit" elevation='0' @click="logado">Logar</v-btn>
 								</v-col>
+								
 							</v-row>
 						
 					</v-card-text>
@@ -89,6 +90,12 @@ export default {
 			},
 		}
 	},
+
+	methods: {
+		logado: function(){
+			this.$router.replace("logado");
+		}
+	}
 	
 	
 

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+//import { component } from 'vue/types/umd'
+import Logado from '../components/Logado'
 //import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
@@ -18,6 +20,11 @@ const routes = [
     path: '#',
     redirect:'/login'
   },
+  {
+    path: '/logado',
+    name: 'Logado',
+    component: Logado
+  }
 ]
 
 const router = new VueRouter({

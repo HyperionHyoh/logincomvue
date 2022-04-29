@@ -179,6 +179,7 @@
 </template>
 
 <script>
+//import firebase from 'firebase';
   export default {
     name:'Cadastro',
     data: () => ({
@@ -188,7 +189,8 @@
 			id: null,
 			usuario:{
 				nome: '',
-				email: ''
+				email: '',
+        senha: ''
 			}
     }),
     methods:{
@@ -214,6 +216,21 @@
 			/*this.$http.post('usuarios.json', this.usuario)
 				.then(() => this.limpar())*/
 		},
+    /*logar(){
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.usuario.email, this.usuario.password)
+        .then(data => {
+          data.user
+            .updateProfile({
+              displayName: this.usuario.nome
+            })
+            .then(()=>{});
+        })
+        .catch(err=>{
+          this.error = err.message;
+        })
+    }*/
     }
   }
 </script>
