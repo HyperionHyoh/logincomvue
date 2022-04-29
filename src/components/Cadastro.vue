@@ -22,7 +22,7 @@
           text
           type="success"
         >
-          I'm a dense alert with the <strong>text</strong> prop and a <strong>type</strong> of success
+          <strong>Dados cadastrados com sucesso!</strong>
         </v-alert>
         <v-card-title>
           <span class="text-h5">Formulário de cadastro</span>

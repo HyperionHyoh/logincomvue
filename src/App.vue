@@ -2,8 +2,9 @@
   <v-app>
     <navbar/>
       <v-main class="main">
-          <router-link to="/login">Login</router-link> |
-          <router-link to="/logado">logado</router-link> 
+        <!--  <router-link to="/login">Login</router-link> |
+          <router-link to="/logado">logado</router-link> -->
+          
         <v-container>
           
          

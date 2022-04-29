@@ -35,7 +35,7 @@ var routes = [{
     requirestAuth: false
   }
 }, {
-  path: '#',
+  path: '/',
   redirect: '/login'
 }, {
   path: '/logado',
