@@ -18,6 +18,7 @@
       <v-card>
         <v-alert
           dismissible
+          :value="alert"
           dense
           text
           type="success"
@@ -162,6 +163,7 @@
             color="purple darken-2"
             text
             @click="dialog = false"
+            
           >
             Fechar
           </v-btn>
@@ -169,6 +171,7 @@
             color="purple darken-2"
             text
             @click="salvar"
+            
           >
             Salvar
           </v-btn>
@@ -183,6 +186,7 @@
   export default {
     name:'Cadastro',
     data: () => ({
+      alert: false,
       dialog: false,
       mensagens: [],
 			usuarios:[],
@@ -202,7 +206,11 @@
 			this.mensagens = []
 		},
 
-      salvar(){
+    alerta(){
+      alert("Usuário Cadastrado")
+    },
+
+    salvar(){
 			const metodo = this.id ? 'patch' : 'post'
 			const finalUrl = this.id ? `/${this.id}.json` : '.json'
 			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
@@ -210,12 +218,14 @@
 					this.limpar()
 					this.mensagens.push({
 						texto:'Cadastro realizado com sucesso',
-						tipo:'success'
-					})
-					
+						tipo:'success',
+            
+					}),
+          this.alerta()
 				})
 			/*this.$http.post('usuarios.json', this.usuario)
-				.then(() => this.limpar())*/
+				.then(() => this.alerta())*/
+        
 		},
     /*logar(){
       firebase
