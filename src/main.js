@@ -5,9 +5,7 @@ import vuetify from './plugins/vuetify'
 import './plugins/axios'
 import { initializeApp } from "firebase/app";
 
-
 Vue.config.productionTip = false
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6tWC98DGe4FF3o2GdRRIeIR9JBO5Egi4",
@@ -21,7 +19,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 
 new Vue({
   router,

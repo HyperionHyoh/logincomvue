@@ -179,7 +179,7 @@
 </template>
 
 <script>
-//import firebase from 'firebase';
+
   export default {
     name:'Cadastro',
     data: () => ({
@@ -194,6 +194,7 @@
 			}
     }),
     methods:{
+
     limpar(){
 			this.usuario.nome = ''
 			this.usuario.email = ''
