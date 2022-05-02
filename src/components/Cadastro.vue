@@ -170,7 +170,7 @@
           <v-btn
             color="purple darken-2"
             text
-            @click="salvar"
+            @click="cadastro"
             
           >
             Salvar
@@ -182,7 +182,7 @@
 </template>
 
 <script>
-
+import firebase from 'firebase'
   export default {
     name:'Cadastro',
     data: () => ({
@@ -192,7 +192,6 @@
 			usuarios:[],
 			id: null,
 			usuario:{
-				nome: '',
 				email: '',
         senha: ''
 			}
@@ -209,6 +208,22 @@
     alerta(){
       alert("Usuário Cadastrado")
     },
+
+    cadastro(){
+			firebase.auth()
+			.createUserWithEmailAndPassword(this.usuario.email, this.usuario.senha)
+			.then(
+				//this.$router.replace("logado"),
+				
+				user => {
+					console.log(user.data)
+					this.salvar()
+				},
+				err => {
+					alert(err);
+				}
+			)
+		},
 
     salvar(){
 			const metodo = this.id ? 'patch' : 'post'
@@ -227,6 +242,8 @@
 				.then(() => this.alerta())*/
         
 		},
+
+    
     /*logar(){
       firebase
         .auth()

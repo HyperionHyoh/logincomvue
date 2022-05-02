@@ -24,7 +24,7 @@ _vue["default"].use(_vueRouter["default"]);
 
 var routes = [{
   path: '/login',
-  name: 'login',
+  name: 'Login',
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/Login'));
@@ -40,7 +40,8 @@ var routes = [{
 }, {
   path: '/logado',
   name: 'Logado',
-  component: _Logado["default"]
+  component: _Logado["default"],
+  requirestAuth: true
 }];
 var router = new _vueRouter["default"]({
   mode: 'history',

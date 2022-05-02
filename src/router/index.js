@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('../views/Login'),
     meta:{
       title: 'Cadastro WEB - Login',
@@ -23,7 +23,8 @@ const routes = [
   {
     path: '/logado',
     name: 'Logado',
-    component: Logado
+    component: Logado,
+    requirestAuth: true
   }
 ]
 

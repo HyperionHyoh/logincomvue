@@ -5,7 +5,7 @@
       flat
       color="purple"
       dark>
-      <v-toolbar-title>Olá Nome</v-toolbar-title> 
+      <v-toolbar-title>Olá </v-toolbar-title> 
 
      <div>
      <v-btn
@@ -38,17 +38,28 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
+            <v-btn @click="obterUsuarios" size="lg" class="success">Obter Usuários</v-btn>
             <p>
-              Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
+
+              <v-list          
+                subheader
+                three-line
+              >
+                <v-list-item v-for="(usuario, id) in usuarios" :key="id">
+                  <v-list-item-content >
+                    <strong>Nome: </strong>{{usuario.nome}}<br>
+                    <strong>E-mail: </strong>{{usuario.email}}<br>
+                    <strong>ID: </strong>{{id}}<br>
+                    <v-btn class="warning" size="lg" @click="carregar(id)">Carregar</v-btn>
+                    <v-btn class="error" size="lg" @click="excluir(id)" >Excluir</v-btn>
+                  </v-list-item-content>
+                </v-list-item>
+
+              </v-list>
+              
             </p>
 
-            <p>
-              Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
-            </p>
-
-            <p class="mb-0">
-              Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.
-            </p>
+            
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -85,13 +96,60 @@
 <script>
   export default {
     name:'Logado',
-
-
+  data(){
+    return{
+      mensagens: [],
+			usuarios:[],
+			id: null,
+			usuario:{
+				nome: '',
+				email: ''
+			}
+    }
+  },
 
   methods: {
 	login: function(){
 		this.$router.replace("login");
-	}
+	},
+
+
+  limpar(){
+			this.usuario.nome = ''
+			this.usuario.email = ''
+			this.id = null
+			this.mensagens = []
+			this.obterUsuarios()
+		},
+	carregar(id){
+		this.id = id
+		this.usuario = {...this.usuarios[id]}
+	},
+	excluir(id){
+		this.$http.delete(`/usuarios/${id}.json`)
+		.then(() => this.limpar(), 
+			this.mensagens.push({
+			texto:'Cadastro Excluído',
+			tipo:'warning',
+			
+		}))
+		//this.obterUsuarios()
+		/*.catch(err => {
+			this.mensagens.push({
+				texto: 'Problema ao excluir!',
+				tipo: 'danger'
+			})
+		})*/
+			
+		},
+		obterUsuarios(){
+			this.$http.get('usuarios.json').then(res =>{
+				this.usuarios=res.data
+				
+			})
+			
+		},
+
   }
 }
 
